@@ -1,34 +1,40 @@
-import express from "express";
+// todos.js
+import express from 'express';
 
 const router = express.Router();
 
-// GET all todos
-router.get("/todos", (req, res) => {
-  res.send("All Todos");
+// GET /api/todos - Retrieve all todos
+router.get('/todos', (req, res) => {
+    res.send('All Todos'); // You can replace this with actual data in the future
 });
 
-// GET a specific todo by id
-router.get("/todos/:id", (req, res) => {
-  const { id } = req.params;
-  res.send(`Getting TODO with id ${id}`);
+// GET /api/todos/:id - Retrieve a specific todo by ID
+router.get('/todos/:id', (req, res) => {
+    const { id } = req.params; // Get the ID from the route
+    res.send( `Getting TODO with id ${id}` ); // Send a pretty JSON response
 });
 
-// POST a new todo
-router.post("/todos", (req, res) => {
-  res.json({ id: 1, title: "Todo", description: "My todo" });
+// POST /api/todos - Create a new todo
+router.post('/todos', (req, res) => {
+    const newTodo = {
+        id: 1,
+        title: "Todo",
+        description: "My todo"
+    };
+    res.json(newTodo); // Send the created todo as a pretty JSON response
 });
 
-// PUT (update) a todo by id
-router.put("/todos/:id", (req, res) => {
-  const { id } = req.params;
-  res.send(`Updating TODO with id ${id}`);
+// PUT /api/todos/:id - Update a specific todo by ID
+router.put('/todos/:id', (req, res) => {
+    const { id } = req.params;
+    res.send( `Updating TODO with id ${id}` ); // Pretty JSON response
 });
 
-// DELETE a todo by id
-router.delete("/todos/:id", (req, res) => {
-  const { id } = req.params;
-  res.send(`Deleting TODO with id ${id}`);
+// DELETE /api/todos/:id - Delete a specific todo by ID
+router.delete('/todos/:id', (req, res) => {
+    const { id } = req.params;
+    res.send( `Deleting TODO with id ${id}`); // Pretty JSON response
 });
 
-// Export the router object as the default export
+// Export the router
 export default router;
