@@ -1,2 +1,2 @@
 # todo-list-app
-A Basic Todo List App Written with NodeJs and Express
+Add "A Basic Todo List App Written with NodeJs and Express" as description.
