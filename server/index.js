@@ -1,23 +1,30 @@
-import express from "express"; // Import express
-import router from "./routes/todos.js"; // Import the todos router
+import express from "express";
+import connect from "./database/mongoDB.js"; // Import the connect function
 
-const app = express(); // Create an express application
+import todosRouter from "./routes/todos.js";
+import usersRouter from "./routes/users.js";
 
-// Define the port
-const port = 3000;
+const app = express();
+const port = 4000;
 
-// Middleware to parse JSON requests (if needed for POST and PUT requests)
-app.use(express.json()); 
 
-// Define a root route
+
+app.use(express.urlencoded({extended: true}));
+app.use(express.json());
+
+// Attempt connection to MongoDB
+
+app.use(express.static("public"));
+
 app.get("/", (req, res) => {
   res.send("Hello Todo App!!!");
 });
 
-// Mount the router with the /api prefix
-app.use("/api", router);
+app.use("/api", todosRouter);
+app.use("/api", usersRouter);
 
-// Start the server
+connect();
+
 app.listen(port, () => {
   console.log(`Listening to port ${port}`);
 });
